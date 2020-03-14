@@ -1,9 +1,9 @@
 Time log for challenge 7
 Timothy Player
 
-
-
 Initializing the repo on home device 1 hour.
 Reading python documents 2 hours.
-
+Learning about TF 2 hours
+Learning and communicating about the project 2 hours spanning
+multiple labs and group meetings.
 
