@@ -1,0 +1,8 @@
+Timothy Player
+sub project for final project
+
+1. Initialize a repo 5 pts
+2. Create a working blackjack for one player. 10 pts
+3. create blackjack for multiple people 5 pts
+4. Creaate a blackjaack dealer using trained tensorflow
+   model based of the cards of the deck.
