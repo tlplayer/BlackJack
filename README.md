@@ -1,5 +1,18 @@
 # BlackJack
-A BlackJack Python game.
+
+Made by tplayer
+in collaboration with 
+gcrois, PokemonPower92
+
+A BlackJack Python game
+A sub repo of MicroBat
+
+To start using activate a python virtual env.
+Then use the command
+
+Python3 BlackJack.py
+
+Follow the prompts, have fun!
 
 The framework for the task is as follows,
 
