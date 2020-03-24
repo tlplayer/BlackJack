@@ -5,6 +5,13 @@
 import random
 
 
+
+
+def hit(response,player):
+	if response == "hit":
+		
+	if response == "stay":
+
 #Take the number of players instantiate the array of cards 
 #and supply 
 def main():
