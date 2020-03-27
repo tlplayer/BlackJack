@@ -24,8 +24,10 @@ class Player:
 	def anni(self,wager):
 		if wager <= self.money:
 			self.bet = wager
+			return 1
 		else:
 			print("Bet greater than {}".format(self.money))
+			return 0
 
 	#Takes a card from the deck that is not a 1 and returns index.
 	def draw(self):
@@ -71,9 +73,9 @@ class Player:
 		self.print_bust()
 
 	#Prints the Player's cards and earnings and bet.
-	def print(self):
-		for i in range(cards):
-			print()
+	def print_player(self):
+		self.print_cards()
+		self.print_score()
 		
 	#Print all the player's cards
 	def print_cards(self):
@@ -116,7 +118,7 @@ class Player:
 	def print_score(self):
 		print("Player {}'s score: {}".format(self.id,self.standing))
 """
-"""
+
 #This is a little test code for the class to test that changing the deck changes
 #the sub classes decks.
 deck = [0]*52
@@ -126,9 +128,10 @@ print(x.id)
 print(x.deck)
 deck[0] = 1
 print(x.deck)
-x.anni(51)
+x.anni(5)
 x.deal()
 print(x.cards)
 x.print_cards()
 x.hit()
 x.print_cards()
+"""
