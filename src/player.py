@@ -38,6 +38,7 @@ class Player:
 			self.cards.append(card)
 			self.tally()
 		if self.standing > 21:
+			self.print_cards()
 			self.bust()
 
 	#Calls hit twice
@@ -67,14 +68,13 @@ class Player:
 	def print(self):
 		for i in range(cards):
 			print()
-
-
+		
 	#Print all the player's cards
 	def print_cards(self):
 		print("Player",self.id,"has cards:")
 		for i in range(len(self.cards)):
 			self.print_card(self.cards[i])
-
+		self.print_score()
 	#Python apparently does not have a switch statement yikes.
 	def print_card(self, index):
 		value = index%13
@@ -91,14 +91,19 @@ class Player:
 		if value == 0:
 			print("Ace of ", suit_str)
 		elif value < 10:
-			++value
-			print(++value, " of ", suit_str)
+			value += 1
+			print(value, " of ", suit_str)
 		elif value == 10:
 			print("Jack of ", suit_str)
 		elif value == 11:
 			print("Queen of ", suit_str)
-		elif vaalue == 12:
+		elif value == 12:
 			print("King of ", suit_str)
+	def print_bust(self):
+		print("Player", self.id,"has busted.")
+		print("They lost:$", self.bet)
+	def print_score(self):
+		print("Player {}'s score: {}".format(self.id,self.standing))
 """
 """
 #This is a little test code for the class to test that changing the deck changes
@@ -112,7 +117,6 @@ deck[0] = 1
 print(x.deck)
 x.deal()
 print(x.cards)
+x.print_cards()
 x.hit()
-print(x.cards)
-print(x.standing)
 x.print_cards()
