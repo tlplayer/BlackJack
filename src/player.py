@@ -21,6 +21,7 @@ class Player:
 		self.standing = 0
 		self.bet = 0
 		self.bust = 0
+
 	#Takes a card from the deck that is not a 1 and returns index.
 	def draw(self):
 		tmp = 1
@@ -30,6 +31,7 @@ class Player:
 			tmp = self.deck[index]
 		self.deck[index] = 1
 		return index
+
 	#Gives one card randomly from the deck without replacement.
 	def hit(self):
 		if self.standing <= 21:
@@ -38,6 +40,7 @@ class Player:
 			self.sum()
 		if self.standing > 21:
 			self.bust()
+
 	#Calls hit twice
 	def deal(self):
 		self.bust = 0
@@ -47,6 +50,7 @@ class Player:
 	def print(self):
 		for i in range(cards):
 			print()
+
 	#Helper function to get total of player's cash
 	def sum(self):
 		self.standing = 0
@@ -56,12 +60,40 @@ class Player:
 				self.standing += 11 if self.standing < 11 else 1
 			else:
 				self.standing += value if value < 10 else 10
+
 	#If the player busts remove their bet from their
 	#account. cards are not returned to deck.
 	def bust(self):
 		self.standing = 0
 		self.cards.clear()
 		self.money -= self.bet
+	#Print all the player's cards
+	def print_cards(self)
+		print("Player ",self.id,", has cards:\n")
+		for i in range(len(deck)):
+			self.print_card(self.cards[i])
+
+	#Python apparently does not have a switch statement yikes.
+	def print_card(self, index):
+		value = index%13
+		suit = index/13
+		if value < 10:
+			card = (value+1)+'0'
+		elsif value == 10:
+			card = "Jack"
+		elsif value = 11:
+			card = ""
+		if suit == 0:
+			suit_str = "Hearts"
+		if suit == 1:
+			suit_str = "Spades"
+		if suit == 2:
+			suit_str = "Clubs"
+		if suit == 3:
+			suit_str = "Diamonds"
+
+		print("Player ",self.id,", has cards: ", card, " of ", suit_str)
+
 """
 """
 #This is a little test code for the class to test that changing the deck changes
@@ -74,6 +106,8 @@ print(x.deck)
 deck[0] = 1
 print(x.deck)
 x.deal()
+print(x.cards)
+x.hit()
 print(x.cards)
 print(x.standing)
 
