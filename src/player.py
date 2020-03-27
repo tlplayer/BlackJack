@@ -20,7 +20,6 @@ class Player:
 		self.deck = deck
 		self.standing = 0
 		self.bet = 0
-		self.bust = 0
 
 	#Takes a card from the deck that is not a 1 and returns index.
 	def draw(self):
@@ -37,22 +36,17 @@ class Player:
 		if self.standing <= 21:
 			card = self.draw() 
 			self.cards.append(card)
-			self.sum()
+			self.tally()
 		if self.standing > 21:
 			self.bust()
 
 	#Calls hit twice
 	def deal(self):
-		self.bust = 0
 		for i in range(2):
 			self.hit()
-	#Prints the Player's cards and earnings and bet.
-	def print(self):
-		for i in range(cards):
-			print()
 
-	#Helper function to get total of player's cash
-	def sum(self):
+		#Helper function to get total of player's cash
+	def tally(self):
 		self.standing = 0
 		for i in range(len(self.cards)):
 			value = self.cards[i]%13+1
@@ -67,22 +61,25 @@ class Player:
 		self.standing = 0
 		self.cards.clear()
 		self.money -= self.bet
+		self.print_bust()
+
+	#Prints the Player's cards and earnings and bet.
+	def print(self):
+		for i in range(cards):
+			print()
+
+
 	#Print all the player's cards
-	def print_cards(self)
-		print("Player ",self.id,", has cards:\n")
-		for i in range(len(deck)):
+	def print_cards(self):
+		print("Player",self.id,"has cards:")
+		for i in range(len(self.cards)):
 			self.print_card(self.cards[i])
 
 	#Python apparently does not have a switch statement yikes.
 	def print_card(self, index):
 		value = index%13
-		suit = index/13
-		if value < 10:
-			card = (value+1)+'0'
-		elsif value == 10:
-			card = "Jack"
-		elsif value = 11:
-			card = ""
+		suit = index//13
+		suit_str = ""
 		if suit == 0:
 			suit_str = "Hearts"
 		if suit == 1:
@@ -91,9 +88,17 @@ class Player:
 			suit_str = "Clubs"
 		if suit == 3:
 			suit_str = "Diamonds"
-
-		print("Player ",self.id,", has cards: ", card, " of ", suit_str)
-
+		if value == 0:
+			print("Ace of ", suit_str)
+		elif value < 10:
+			++value
+			print(++value, " of ", suit_str)
+		elif value == 10:
+			print("Jack of ", suit_str)
+		elif value == 11:
+			print("Queen of ", suit_str)
+		elif vaalue == 12:
+			print("King of ", suit_str)
 """
 """
 #This is a little test code for the class to test that changing the deck changes
@@ -110,4 +115,4 @@ print(x.cards)
 x.hit()
 print(x.cards)
 print(x.standing)
-
+x.print_cards()
