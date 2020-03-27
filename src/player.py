@@ -23,9 +23,9 @@ class Player:
 		self.bust = 0
 	#Takes a card from the deck that is not a 1 and returns index.
 	def draw(self):
-		tmp = 0
+		tmp = 1
 		#Draw look randomly until there's something that no one else has. 
-		while (tmp == 0):
+		while (tmp == 1):
 			index = random.randrange(len(self.deck))
 			tmp = self.deck[index]
 		self.deck[index] = 1
@@ -36,7 +36,7 @@ class Player:
 			card = self.draw() 
 			self.cards.append(card)
 			self.sum()
-		if standing > 21:
+		if self.standing > 21:
 			self.bust()
 	#Calls hit twice
 	def deal(self):
