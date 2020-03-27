@@ -21,6 +21,12 @@ class Player:
 		self.standing = 0
 		self.bet = 0
 
+	def anni(self,wager):
+		if wager <= self.money:
+			self.bet = wager
+		else:
+			print("Bet greater than {}".format(self.money))
+
 	#Takes a card from the deck that is not a 1 and returns index.
 	def draw(self):
 		tmp = 1
@@ -75,6 +81,7 @@ class Player:
 		for i in range(len(self.cards)):
 			self.print_card(self.cards[i])
 		self.print_score()
+
 	#Python apparently does not have a switch statement yikes.
 	def print_card(self, index):
 		value = index%13
@@ -99,9 +106,13 @@ class Player:
 			print("Queen of ", suit_str)
 		elif value == 12:
 			print("King of ", suit_str)
+
+	#Helper for most functions to declare when a player has bust.
 	def print_bust(self):
 		print("Player", self.id,"has busted.")
 		print("They lost:$", self.bet)
+
+	#Print the user's score.
 	def print_score(self):
 		print("Player {}'s score: {}".format(self.id,self.standing))
 """
@@ -115,6 +126,7 @@ print(x.id)
 print(x.deck)
 deck[0] = 1
 print(x.deck)
+x.anni(51)
 x.deal()
 print(x.cards)
 x.print_cards()
