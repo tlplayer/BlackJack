@@ -10,24 +10,14 @@ import random
 #is a adjustable for convenience of the class master class
 #The meat of it comes down to hit or stay, with utility 
 #of betting and special cases of aces.
-class Player:
+class Dealer:
 	#intialize the dealer's money, name i.e. id.
 	#They start with no cards until buy in
-	def __init__( self, money, id, deck = []):
-		self.money = money
+	def __init__( self, id, deck = []):
+		self.money = 0
 		self.id = id
 		self.cards = []
 		self.deck = deck
-		self.standing = 0
-		self.bet = 0
-
-	def anni(self,wager):
-		if wager <= self.money:
-			self.bet = wager
-			return 1
-		else:
-			print("Bet greater than {}".format(self.money))
-			return 0
 
 	#Takes a card from the deck that is not a 1 and returns index.
 	def draw(self):
@@ -117,8 +107,8 @@ class Player:
 	#Print the user's score.
 	def print_score(self):
 		print("Dealer {}'s score: {}".format(self.id,self.standing))
-"""
 
+"""
 #This is a little test code for the class to test that changing the deck changes
 #the sub classes decks.
 deck = [0]*52

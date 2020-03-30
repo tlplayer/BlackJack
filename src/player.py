@@ -12,7 +12,9 @@ import random
 #of betting and special cases of aces.
 class Player:
 	#intialize the player's money, name i.e. id.
-	#They start with no cards until buy in
+	#They start with no cards until buy in The state
+	#of the player determines if they are playing in the hand
+	#or if they have 
 	def __init__( self, money, id, deck = []):
 		self.money = money
 		self.id = id
@@ -20,13 +22,38 @@ class Player:
 		self.deck = deck
 		self.standing = 0
 		self.bet = 0
+		self.state = True
 
+	#They no longer can hit so there's that.
+	def fold(self):
+    	self.state = False
+
+	#Create a new hand and set the bet to 0.
+	def new_hand(self):
+    	self.state = True
+		self.bet = 0
+
+	#Prompt the player to anni up or hit or stay.
+	#also handles Anniing
+	def prompt(self):
+		if self.bet == 0:
+			response = scan("Buyin? (Yes/No)")
+			if response = "No"
+				self.fold()
+			elif:
+    			anni(5)
+		else:
+			response = scan("Hit or Stay?")
+			if response == "Hit":
+				self.hit()
+		
 	def anni(self,wager):
 		if wager <= self.money:
 			self.bet = wager
 			return 1
 		else:
 			print("Bet greater than {}".format(self.money))
+			self.fold()
 			return 0
 
 	#Takes a card from the deck that is not a 1 and returns index.
@@ -49,10 +76,11 @@ class Player:
 			self.print_cards()
 			self.bust()
 
-	#Calls hit twice
+	#Calls hit twice if the player hasn't folded.
 	def deal(self):
-		for i in range(2):
-			self.hit()
+		if state == True:
+			for i in range(2):
+				self.hit()
 
 		#Helper function to get total of player's cash
 	def tally(self):
@@ -71,7 +99,7 @@ class Player:
 		self.cards.clear()
 		self.money -= self.bet
 		self.print_bust()
-
+		return self.bet
 	#Prints the Player's cards and earnings and bet.
 	def print_player(self):
 		self.print_cards()
@@ -133,5 +161,4 @@ x.deal()
 print(x.cards)
 x.print_cards()
 x.hit()
-x.print_cards()
 """
