@@ -59,7 +59,7 @@ class Dealer:
 	def bust(self):
 		self.standing = 0
 		self.cards.clear()
-		self.money -= self.bet
+		self.money -= self.pot
 		self.print_bust()
 
 	#Prints the Player's cards and earnings and bet.
@@ -101,8 +101,7 @@ class Dealer:
 
 	#Helper for most functions to declare when a dealer has bust.
 	def print_bust(self):
-		print("Dealer", self.id,"has busted.")
-		print("They lost:$", self.bet)
+		print("Dealer has busted.")
 
 	#Print the user's score.
 	def print_score(self):

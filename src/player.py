@@ -7,7 +7,7 @@
 import random
 
 #Let's break down this class. Firstly the money 
-#is a adjustable for convenience of the class master class
+#is adjustable for convenience of the class master class
 #The meat of it comes down to hit or stay, with utility 
 #of betting and special cases of aces.
 class Player:
@@ -32,6 +32,11 @@ class Player:
 	def new_hand(self):
     	self.state = True
 		self.bet = 0
+
+	#If the player wins give them their money.
+	def win(self):
+		self.money += self.bet*3/2
+		return 1
 
 	#Prompt the player to anni up or hit or stay.
 	#also handles Anniing
