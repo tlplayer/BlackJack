@@ -107,20 +107,3 @@ class Dealer:
 	def print_score(self):
 		print("Dealer {}'s score: {}".format(self.id,self.standing))
 
-"""
-#This is a little test code for the class to test that changing the deck changes
-#the sub classes decks.
-deck = [0]*52
-x = Player(50,"Timothy", deck)
-print(x.money)
-print(x.id)
-print(x.deck)
-deck[0] = 1
-print(x.deck)
-x.anni(5)
-x.deal()
-print(x.cards)
-x.print_cards()
-x.hit()
-x.print_cards()
-"""

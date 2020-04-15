@@ -7,7 +7,7 @@
 import random
 
 #Let's break down this class. Firstly the money 
-#is adjustable for convenience of the class master class
+#is adjustable for convenience of the class' master class
 #The meat of it comes down to hit or stay, with utility 
 #of betting and special cases of aces.
 class Player:
@@ -24,13 +24,26 @@ class Player:
 		self.bet = 0
 		self.state = True
 
+###############################################################################
+#GAME STATE FUNCTIONS
+###############################################################################
+
+	#If the player busts remove their bet from their
+	#account. cards are not returned to deck.
+	def bust(self):
+		self.standing = 0
+		self.cards.clear()
+		self.money -= self.bet
+		self.print_bust()
+		return self.bet
+
 	#They no longer can hit so there's that.
 	def fold(self):
-    	self.state = False
+		self.state = False
 
 	#Create a new hand and set the bet to 0.
 	def new_hand(self):
-    	self.state = True
+		self.state = True
 		self.bet = 0
 
 	#If the player wins give them their money.
@@ -38,20 +51,31 @@ class Player:
 		self.money += self.bet*3/2
 		return 1
 
+###############################################################################
+#I/O FUNCTIONS
+###############################################################################
+
+#NOTE: need to change this for the flask part.
+
 	#Prompt the player to anni up or hit or stay.
 	#also handles Anniing
 	def prompt(self):
 		if self.bet == 0:
 			response = scan("Buyin? (Yes/No)")
-			if response = "No"
+			if response == "No":
 				self.fold()
-			elif:
-    			anni(5)
+			else:
+				anni(5)
 		else:
 			response = scan("Hit or Stay?")
 			if response == "Hit":
 				self.hit()
-		
+
+
+###############################################################################
+#Black Jack Parts.
+###############################################################################
+
 	def anni(self,wager):
 		if wager <= self.money:
 			self.bet = wager
@@ -87,7 +111,7 @@ class Player:
 			for i in range(2):
 				self.hit()
 
-		#Helper function to get total of player's cash
+	#Helper function to get total of player's cash
 	def tally(self):
 		self.standing = 0
 		for i in range(len(self.cards)):
@@ -96,18 +120,8 @@ class Player:
 				self.standing += 11 if self.standing < 11 else 1
 			else:
 				self.standing += value if value < 10 else 10
-
-	#If the player busts remove their bet from their
-	#account. cards are not returned to deck.
-	def bust(self):
-		self.standing = 0
-		self.cards.clear()
-		self.money -= self.bet
-		self.print_bust()
-		return self.bet
-
 ###############################################################################
-#
+#PRINTING FUNCTIONS
 ###############################################################################
 	#Prints the Player's cards and earnings and bet.
 	def print_player(self):
@@ -154,20 +168,3 @@ class Player:
 	#Print the user's score.
 	def print_score(self):
 		print("Player {}'s score: {}".format(self.id,self.standing))
-"""
-
-#This is a little test code for the class to test that changing the deck changes
-#the sub classes decks.
-deck = [0]*52
-x = Player(50,"Timothy", deck)
-print(x.money)
-print(x.id)
-print(x.deck)
-deck[0] = 1
-print(x.deck)
-x.anni(5)
-x.deal()
-print(x.cards)
-x.print_cards()
-x.hit()
-"""
