@@ -23,6 +23,7 @@ class Player:
 		self.standing = 0
 		self.bet = 0
 		self.state = True
+		self.stay = False
 
 ###############################################################################
 #GAME STATE FUNCTIONS
@@ -32,6 +33,7 @@ class Player:
 	#account. cards are not returned to deck.
 	def bust(self):
 		self.standing = 0
+		self.stay = True
 		self.cards.clear()
 		self.money -= self.bet
 		self.print_bust()
@@ -40,10 +42,12 @@ class Player:
 	#They no longer can hit so there's that.
 	def fold(self):
 		self.state = False
+		self.stay = True
 
 	#Create a new hand and set the bet to 0.
 	def new_hand(self):
 		self.state = True
+		self.stay = False
 		self.bet = 0
 
 	#If the player wins give them their money.
@@ -64,12 +68,12 @@ class Player:
 			response = input("Buyin? (Yes/No)")
 			if response == "No":
 				self.fold()
-			else:
+			if response == "Yes":
 				self.anni(5)
 		else:
 			response = input("Hit or Stay?")
-			if response == "Hit":
-				self.hit()
+
+
 
 
 ###############################################################################
@@ -107,7 +111,7 @@ class Player:
 
 	#Calls hit twice if the player hasn't folded.
 	def deal(self):
-		if state == True:
+		if self.state == True:
 			for i in range(2):
 				self.hit()
 
@@ -120,6 +124,11 @@ class Player:
 				self.standing += 11 if self.standing < 11 else 1
 			else:
 				self.standing += value if value < 10 else 10
+
+	def stay(self):
+		self.stay = True
+		
+
 ###############################################################################
 #PRINTING FUNCTIONS
 ###############################################################################

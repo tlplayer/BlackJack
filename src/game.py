@@ -27,19 +27,32 @@ class Game:
 #Prompts each player in the dictionary for their response	
 	def play(self):
 		for key in self.players:
-			self.players[key].prompt()
-		self.dealer.prompt()
+			if self.players[key].stay == False:
+				self.players[key].prompt()
+		if self.dealer.stay == False:
+			self.dealer.prompt()
 
 #This one clears all players.
 	def new_game(self):
 		for key in self.players.keys():
 			self.players[key].new_hand()
+			self.players[key].deal()
 			self.players[key].prompt()
-		self.dealer.prompt()
+		self.dealer.()
 
 #This one makes a new player could probably use the users username but whatevs
 	def new_player(self):
 		id = input("Enter your name: ")
 		self.players.update({id:Player(self.money,id,self.deck)})
+
+
+###############################################################################
+#PRINTING FOR ALL PLAYERS:
+###############################################################################
+
+	def print_all(self):
+		for key in self.players:
+			self.players[key].print_cards()
+		self.dealer.print_dealer()
 
 

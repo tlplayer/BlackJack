@@ -26,7 +26,20 @@ class Dealer:
 		self.id = id
 		self.cards = []
 		self.deck = deck
+		self.standing = 0
+		self.stay = False
 
+###############################################################################
+#I/O FUNCTIONS: This should be changed for the Flask hooking up.
+###############################################################################
+
+	#This is a dummy version until I figure out how the hell I get TF to work with
+	#Flask
+	def prompt(self):
+		if self.standing == 16:
+			self.stay
+		else:
+			self.hit()
 
 ###############################################################################
 #BLACK JACK GAME FUNCTIONS: Draw, hit, deal, tally...
@@ -85,7 +98,6 @@ class Dealer:
 	#Prints the Player's cards and earnings and bet.
 	def print_dealer(self):
 		self.print_cards()
-		self.print_score()
 		
 	#Print all the dealer's cards
 	def print_cards(self):
