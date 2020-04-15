@@ -105,6 +105,10 @@ class Player:
 		self.money -= self.bet
 		self.print_bust()
 		return self.bet
+
+###############################################################################
+#
+###############################################################################
 	#Prints the Player's cards and earnings and bet.
 	def print_player(self):
 		self.print_cards()
