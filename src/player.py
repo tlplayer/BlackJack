@@ -61,13 +61,13 @@ class Player:
 	#also handles Anniing
 	def prompt(self):
 		if self.bet == 0:
-			response = scan("Buyin? (Yes/No)")
+			response = input("Buyin? (Yes/No)")
 			if response == "No":
 				self.fold()
 			else:
-				anni(5)
+				self.anni(5)
 		else:
-			response = scan("Hit or Stay?")
+			response = input("Hit or Stay?")
 			if response == "Hit":
 				self.hit()
 

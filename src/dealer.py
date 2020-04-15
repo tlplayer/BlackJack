@@ -13,11 +13,25 @@ import random
 class Dealer:
 	#intialize the dealer's money, name i.e. id.
 	#They start with no cards until buy in
+
+###############################################################################
+#CONSTRUCTOR: Takes the dealers name and the deck of cards as is.
+#			  Note the dealer's cash is 0 because we only care about what
+#			  it makes vs what it loses.
+###############################################################################
+
+
 	def __init__( self, id, deck = []):
 		self.money = 0
 		self.id = id
 		self.cards = []
 		self.deck = deck
+
+
+###############################################################################
+#BLACK JACK GAME FUNCTIONS: Draw, hit, deal, tally...
+###############################################################################
+
 
 	#Takes a card from the deck that is not a 1 and returns index.
 	def draw(self):
@@ -61,6 +75,12 @@ class Dealer:
 		self.cards.clear()
 		self.money -= self.pot
 		self.print_bust()
+
+
+###############################################################################
+#PRINT FUNCTIONS
+###############################################################################
+
 
 	#Prints the Player's cards and earnings and bet.
 	def print_dealer(self):
