@@ -32,8 +32,8 @@ class Game:
 		self.dealer.bust()
 		for key in self.players:
 			if self.players[key].busted == False:
-				self.dealer.money -= 5
-				self.players[key].money += 5
+				self.dealer.money -= 5*3/2
+				self.players[key].win()
 
 	#What this does is check that all players are either staying or 
 	#The dealer has busted  If everyone has stayed the game isn't still going.
@@ -69,13 +69,11 @@ class Game:
 
 #This one clears all players.
 	def new_game(self):
+		self.deck = 52*[0]
 		for key in self.players:
 			self.players[key].new_hand()
-			self.players[key].deal()
-			self.players[key].prompt()
 		self.dealer.new_hand()
-		self.dealer.deal()
-		self.dealer.prompt()
+
 
 
 #This one makes a new player could probably use the users username but whatevs
@@ -83,12 +81,14 @@ class Game:
 		id = input("Enter your name: ")
 		self.players.update({id:Player(self.money,id,self.deck)})
 
-
+	def game_over(self):
+		for key in self.players:
+			print("{} has ${}".format(self.players[key].id, self.players[key].money))
+		print("The Dealer has a delta of ${}".format(self.dealer.money))
 
 ###############################################################################
 #PRINTING FOR ALL PLAYERS:
 ###############################################################################
-
 
 	def print_all(self):
 		for key in self.players:

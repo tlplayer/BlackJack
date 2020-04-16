@@ -20,7 +20,4 @@ while play != "N":
             G.play()
         G.round_over()
     play = input("Play another round? (Y/N)")
-
-
-
-G.print_all()
+G.game_over()

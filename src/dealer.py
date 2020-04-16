@@ -39,8 +39,11 @@ class Dealer:
 	def prompt(self):
 		if self.standing >= 16:
 			self.stay
+			print("Dealer has stayed.")
 		else:
 			self.hit()
+			print("Dealer has hit")
+			self.print_cards()
 
 ###############################################################################
 #BLACK JACK GAME FUNCTIONS: Draw, hit, deal, tally...
@@ -57,6 +60,7 @@ class Dealer:
 		self.deck[index] = 1
 		return index
 
+
 	#Gives one card randomly from the deck without replacement.
 	def hit(self):
 		if self.standing <= 21:
@@ -67,12 +71,14 @@ class Dealer:
 			self.print_cards()
 			self.bust()
 
+
 	#Calls hit twice
 	def deal(self):
 		for i in range(2):
 			self.hit()
 
-		#Helper function to get total of dealer's cash
+
+	#Helper function to get total of dealer's cash
 	def tally(self):
 		self.standing = 0
 		for i in range(len(self.cards)):
@@ -81,6 +87,7 @@ class Dealer:
 				self.standing += 11 if self.standing < 11 else 1
 			else:
 				self.standing += value if value < 10 else 10
+
 
 	#If the dealer busts remove their bet from their
 	#account. cards are not returned to deck.
@@ -95,6 +102,10 @@ class Dealer:
 		self.busted = False
 		self.stay = False
 		self.bet = 0
+		self.standing = 0
+		self.cards.clear()
+		
+		self.deal()
 
 ###############################################################################
 #PRINT FUNCTIONS

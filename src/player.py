@@ -49,11 +49,16 @@ class Player:
 	def new_hand(self):
 		self.busted = False
 		self.stay = False
+		self.standing = 0
 		self.bet = 0
+		self.cards.clear()
+		self.deal()
+
 
 	#If the player wins give them their money.
 	def win(self):
 		self.money += self.bet*3/2
+		print("{} has won {} $from the dealer.".format(self.id,self.bet*3/2))
 		
 
 ###############################################################################
@@ -89,6 +94,7 @@ class Player:
 		if wager <= self.money:
 			self.bet = wager
 			self.money -= wager
+			print("{} has anni'd {} as a bet.".format(self.id,self.bet))
 			return 1
 		else:
 			print("Bet greater than {}".format(self.money))
