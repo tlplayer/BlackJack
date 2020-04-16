@@ -9,11 +9,18 @@ G = Game(50)
 
 G.new_player()
 
-G.new_game()
+play = input("Play a game? (Y/N)")
 
-G.print_all()
-while G.check_round() == True:
-    G.play()
-G.round_over()
+while play != "N":
+    if play == "Y":
+        G.new_game()
+
+        while G.check_round() == True:
+            G.print_all()
+            G.play()
+        G.round_over()
+    play = input("Play another round? (Y/N)")
+
+
 
 G.print_all()

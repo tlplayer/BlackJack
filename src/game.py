@@ -31,19 +31,27 @@ class Game:
 	def dealer_bust(self):
 		self.dealer.bust()
 		for key in self.players:
-			if self.players[key].state == True:
+			if self.players[key].busted == False:
 				self.dealer.money -= 5
 				self.players[key].money += 5
 
 	#What this does is check that all players are either staying or 
-	#The dealer has busted  
+	#The dealer has busted  If everyone has stayed the game isn't still going.
+	# or if the dealer busts the game is also over.
 	def check_round(self):
-		if self.dealer.state == False:
+		if self.dealer.busted == True:
 			self.dealer_bust()
 		else:
 			for key in self.players:
-				if self.players[key].stay == True:
-    					if
+				if self.players[key].stay == False:
+    					return True
+		return False
+			
+
+	def round_over(self):
+		for key in self.players:
+			if (self.players[key].stay == True) and (self.players[key].standing > self.dealer.standing):
+				self.players[key].win()
 
 
 #Prompts each player in the dictionary for their response	
@@ -80,6 +88,7 @@ class Game:
 ###############################################################################
 #PRINTING FOR ALL PLAYERS:
 ###############################################################################
+
 
 	def print_all(self):
 		for key in self.players:

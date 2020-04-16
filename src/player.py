@@ -54,7 +54,7 @@ class Player:
 	#If the player wins give them their money.
 	def win(self):
 		self.money += self.bet*3/2
-		return 1
+		
 
 ###############################################################################
 #I/O FUNCTIONS
@@ -73,6 +73,10 @@ class Player:
 				self.anni(5)
 		else:
 			response = input("Hit or Stay? ")
+			if response == "Hit":
+				self.hit()
+			elif response == "Stay":
+				self.stayed()
 
 
 
@@ -127,8 +131,9 @@ class Player:
 			else:
 				self.standing += value if value < 10 else 10
 
-	def stay(self):
+	def stayed(self):
 		self.stay = True
+		self.print_stayed()
 		
 
 ###############################################################################
@@ -138,7 +143,16 @@ class Player:
 	def print_player(self):
 		self.print_cards()
 		self.print_score()
-		
+		self.print_money()
+
+
+	def print_money(self):
+		print("Player {} has ${}".format(self.id, self.money))
+
+
+	def print_stayed(self):
+		print("Player {} has stayed.".format(self.id))			
+
 	#Print all the player's cards
 	def print_cards(self):
 		print("Player",self.id,"has cards:")

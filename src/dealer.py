@@ -37,7 +37,7 @@ class Dealer:
 	#This is a dummy version until I figure out how the hell I get TF to work with
 	#Flask
 	def prompt(self):
-		if self.standing == 16:
+		if self.standing >= 16:
 			self.stay
 		else:
 			self.hit()
@@ -86,6 +86,8 @@ class Dealer:
 	#account. cards are not returned to deck.
 	def bust(self):
 		self.standing = 0
+		self.busted = True
+		self.stay = True
 		self.cards.clear()
 		self.print_bust()
 
@@ -142,4 +144,3 @@ class Dealer:
 	#Print the user's score.
 	def print_score(self):
 		print("Dealer {}'s score: {}".format(self.id,self.standing))
-
