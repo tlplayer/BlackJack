@@ -22,7 +22,7 @@ class Player:
 		self.deck = deck
 		self.standing = 0
 		self.bet = 0
-		self.state = True
+		self.busted = False
 		self.stay = False
 
 ###############################################################################
@@ -34,6 +34,7 @@ class Player:
 	def bust(self):
 		self.standing = 0
 		self.stay = True
+		self.busted = True
 		self.cards.clear()
 		self.money -= self.bet
 		self.print_bust()
@@ -41,12 +42,12 @@ class Player:
 
 	#They no longer can hit so there's that.
 	def fold(self):
-		self.state = False
+		self.busted = True
 		self.stay = True
 
 	#Create a new hand and set the bet to 0.
 	def new_hand(self):
-		self.state = True
+		self.busted = False
 		self.stay = False
 		self.bet = 0
 
@@ -65,13 +66,13 @@ class Player:
 	#also handles Anniing
 	def prompt(self):
 		if self.bet == 0:
-			response = input("Buyin? (Yes/No)")
+			response = input("Buyin? (Yes/No) ")
 			if response == "No":
 				self.fold()
 			if response == "Yes":
 				self.anni(5)
 		else:
-			response = input("Hit or Stay?")
+			response = input("Hit or Stay? ")
 
 
 
@@ -83,6 +84,7 @@ class Player:
 	def anni(self,wager):
 		if wager <= self.money:
 			self.bet = wager
+			self.money -= wager
 			return 1
 		else:
 			print("Bet greater than {}".format(self.money))
@@ -111,7 +113,7 @@ class Player:
 
 	#Calls hit twice if the player hasn't folded.
 	def deal(self):
-		if self.state == True:
+		if self.busted == False:
 			for i in range(2):
 				self.hit()
 

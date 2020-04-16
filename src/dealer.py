@@ -28,6 +28,7 @@ class Dealer:
 		self.deck = deck
 		self.standing = 0
 		self.stay = False
+		self.busted = False
 
 ###############################################################################
 #I/O FUNCTIONS: This should be changed for the Flask hooking up.
@@ -86,9 +87,12 @@ class Dealer:
 	def bust(self):
 		self.standing = 0
 		self.cards.clear()
-		self.money -= self.pot
 		self.print_bust()
 
+	def new_hand(self):
+		self.busted = False
+		self.stay = False
+		self.bet = 0
 
 ###############################################################################
 #PRINT FUNCTIONS
