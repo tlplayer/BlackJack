@@ -5,6 +5,7 @@
 #I'll see if I can add some analytics on hit stay ratio and or other stuff.
 
 import random
+from sqlalchemy import orm
 
 #Let's break down this class. Firstly the money 
 #is adjustable for convenience of the class' master class
@@ -52,7 +53,7 @@ class Player:
 		self.standing = 0
 		self.bet = 0
 		self.cards.clear()
-		self.deal()
+		return self.prompt()
 
 
 	#If the player wins give them their money.
@@ -71,13 +72,16 @@ class Player:
 	#also handles Anniing
 	def prompt(self):
 		if self.bet == 0:
-			response = input("Buyin? (Yes/No) ")
+			response = input("{} Buyin? (Yes/No) ".format(self.id))
 			if response == "No":
 				self.fold()
+				return 0
 			if response == "Yes":
 				self.anni(5)
+				self.deal()
+				return 5
 		else:
-			response = input("Hit or Stay? ")
+			response = input("{}, Hit or Stay? ".format(self.id))
 			if response == "Hit":
 				self.hit()
 			elif response == "Stay":

@@ -5,6 +5,7 @@
 
 
 import random
+from sqlalchemy import orm
 
 #Let's break down this class. Firstly the money 
 #is a adjustable for convenience of the class master class
@@ -118,7 +119,7 @@ class Dealer:
 		
 	#Print all the dealer's cards
 	def print_cards(self):
-		print("Player",self.id,"has cards:")
+		print("Dealer",self.id,"has cards:")
 		for i in range(len(self.cards)):
 			self.print_card(self.cards[i])
 		self.print_score()

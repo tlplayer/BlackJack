@@ -7,7 +7,13 @@ from game import Game
 
 G = Game(50)
 
+print("How many players?")
+players = input()
+
 G.new_player()
+G.new_player()
+G.new_player()
+
 
 play = input("Play a game? (Y/N)")
 

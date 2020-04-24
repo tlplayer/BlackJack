@@ -6,7 +6,6 @@ from dealer import Dealer
 import sys
 import json
 
-
 #This handles bets, ani-ups, and the pot.
 class Game:
 ###############################################################################
@@ -71,7 +70,7 @@ class Game:
 	def new_game(self):
 		self.deck = 52*[0]
 		for key in self.players:
-			self.players[key].new_hand()
+			self.dealer.money += self.players[key].new_hand()
 		self.dealer.new_hand()
 
 
